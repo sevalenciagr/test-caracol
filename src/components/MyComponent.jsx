@@ -22,27 +22,41 @@ const MyComponent = () => {
     return <div>Cargando...</div>;
   }
 
-  // Plantilla Handlebars
+  // Define la plantilla Handlebars
   const templateSource = `
-    <div>
-      <h1>{{headline}}</h1>
-      <p>{{subHeadline}}</p>
-
+  <div class="mi-componente">
+    <!-- Agrega la sección de navegación -->
+    <nav class="navigation">
       <ul>
-        {{#each hotTopics}}
-          <li><a href="{{url}}" target="_blank">{{title}}</a></li>
+        {{#each navigation.[0].items}}
+          <li><a href="{{href}}" class="{{#if isCurrent}}current{{/if}}">{{text}}</a></li>
         {{/each}}
       </ul>
-
-      <img src="{{lead.[0].image.src}}" alt="{{lead.[0].alt}}" />
-
-      <audio controls>
-        <source src="{{audioPlayer.[0].audioUrl}}" type="audio/mp3">
-          Tu navegador no soporta el elemento de audio.
-      </audio>
-
-      
+    </nav>
+    <!-- Agrega el logo -->
+    <a href="{{logo.[0].href}}">
+      <img src="{{logo.[0].image.src}}" alt="{{logo.[0].alt}}" class="logo" />
+    </a>
+    
+    <!-- Utiliza el componente de Navbar de Bootstrap para hot-topics -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="navbar-nav">
+    {{#each hotTopics}}
+    <a class="nav-link" href="{{url}}" target="_blank">{{title}}</a>
+    {{/each}}
     </div>
+    </nav>
+    
+    <h1>{{headline}}</h1>
+    <p class="subheadline">{{subHeadline}}</p>
+    <img src="{{lead.[0].image.src}}" alt="{{lead.[0].alt}}" class="lead-image" />
+
+    <!-- Agrega la sección del audio player con una clase específica -->
+    <audio controls class="audio-player">
+      <source src="{{audioPlayer.[0].audioUrl}}" type="audio/mp3">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+  </div>
   `;
 
   // Compila la plantilla Handlebars
