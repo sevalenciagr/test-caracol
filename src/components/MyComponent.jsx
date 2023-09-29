@@ -211,7 +211,8 @@ const MyComponent = () => {
             Tu navegador no soporta el elemento de audio.
           </audio>
 
-          <div class="actions">
+          <h5 class="text-start">Compartir:</h5>
+          <div class="actions text-start">
             {{#each actions.[0].items}}
               <a href="{{shareHref}}" target="{{target}}">{{body}}</a>
             {{/each}}
